@@ -17,7 +17,9 @@ abstract public class Producto implements Descuento{
         this.costo = costo;
         this.disponibleVenta = disponibleVenta;
     }
-
+    public void reducirStock(int cantidad){
+        this.stock -= cantidad;
+    }
     public String getIdentificador() {
         return identificador;
     }

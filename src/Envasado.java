@@ -2,14 +2,29 @@ public class Envasado extends Producto{
     private String tipoEnvase; // plástico, vidrio, lata
     private boolean esImportado;
 
-    public Envasado() {
+    private boolean esIdentificadorValido(String identificador) {
+        return identificador.matches("^AB\\d{3}$");
     }
+
 
     public Envasado(String identificador, String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta, String tipoEnvase, boolean esImportado) {
         super(identificador, descripcion, stock, precioVenta, costo, disponibleVenta);
+        if (!esIdentificadorValido(identificador)) {
+            throw new IllegalArgumentException("Identificador inválido para Envasado. Debe seguir el formato ABXXX.");
+        }
+
         this.tipoEnvase = tipoEnvase;
         this.esImportado = esImportado;
     }
+
+    @Override
+    public void setIdentificador(String identificador) {
+        if (!esIdentificadorValido(identificador)) {
+            throw new IllegalArgumentException("Identificador inválido para Envasado. Debe seguir el formato ABXXX.");
+        }
+        this.identificador = identificador;
+    }
+
 
     @Override
     public void setPorcentajeDescuento(double descuento) {

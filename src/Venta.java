@@ -21,7 +21,7 @@ public class Venta {
             cantidad = producto.getStock();
         }
 
-        if (producto.isDisponible()) {
+        if (producto.isDisponibleVenta()) {
             productosVendidos.put(producto, cantidad);
             total += producto.getPrecioVenta() * cantidad;
             producto.reducirStock(cantidad);
