@@ -1,3 +1,9 @@
+/*
+package operation;
+
+import model.Tienda;
+import service.Producto;
+
 public class IngresoMercaderia {
     private Tienda tienda;
 
@@ -28,10 +34,11 @@ public class IngresoMercaderia {
     }
 }
 
-// Nota: La clase Tienda necesita tener los siguientes métodos:
+// Nota: La clase model.Tienda necesita tener los siguientes métodos:
 // - getSaldoCaja(): devuelve el saldo actual en la caja de la tienda.
 // - getTotalUnidadesStock(): devuelve la cantidad total de unidades en stock.
 // - getMaxStock(): devuelve el máximo de unidades que puede tener en stock.
-// - agregarProductoStock(Producto producto, int cantidad): añade un producto y su cantidad al stock.
+// - agregarProductoStock(service.Producto producto, int cantidad): añade un producto y su cantidad al stock.
 // - descontarSaldoCaja(double monto): descuenta el monto del saldo de la caja.
 
+*/

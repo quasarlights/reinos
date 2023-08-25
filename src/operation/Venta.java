@@ -1,3 +1,7 @@
+package operation;
+
+import service.Producto;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,7 +16,7 @@ public class Venta {
 
     public void agregarProducto(Producto producto, int cantidad) {
         if (producto == null || cantidad <= 0) {
-            System.out.println("Producto inválido o cantidad no válida.");
+            System.out.println("service.Producto inválido o cantidad no válida.");
             return;
         }
 
@@ -44,7 +48,7 @@ public class Venta {
     }
 }
 
-// Nota: La clase Producto necesita tener los siguientes métodos:
+// Nota: La clase service.Producto necesita tener los siguientes métodos:
 // - getStock(): devuelve la cantidad de stock del producto.
 // - isDisponible(): indica si el producto está disponible para la venta.
 // - getPrecioVenta(): devuelve el precio de venta del producto.

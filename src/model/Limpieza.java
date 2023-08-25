@@ -1,12 +1,23 @@
-public class Limpieza extends Producto{
+package model;
+
+import service.Producto;
+
+public class Limpieza extends Producto {
+    private static int contadorId = 0;
     public enum TipoAplicacion {COCINA, PISOS, ROPA, MULTIUSO}
     private TipoAplicacion tipoAplicacion;
 
     public Limpieza() {
     }
 
-    public Limpieza(String identificador, String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta, TipoAplicacion tipoAplicacion) {
-        super(identificador, descripcion, stock, precioVenta, costo, disponibleVenta);
+    @Override
+    protected String generarIdentificador() {
+        contadorId++;
+        return "AZ" + String.format("%03d", contadorId);
+    }
+
+    public Limpieza( String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta, TipoAplicacion tipoAplicacion) {
+        super( descripcion, stock, precioVenta, costo);
         this.tipoAplicacion = tipoAplicacion;
     }
 

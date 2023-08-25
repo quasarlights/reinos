@@ -1,21 +1,28 @@
-public class Bebida extends Producto implements Comestible{
+package model;
+
+import service.Comestible;
+import service.Producto;
+
+public class Bebida extends Producto implements Comestible {
+    private static int contadorId = 0;
     private boolean esAlcoholica;
     private double graduacionAlcoholica;
     private boolean esImportado;
     private String fechaVencimiento;
     private int calorias;
 
-    public Bebida() {
-    }
+    
 
-    public Bebida(String identificador, String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta, boolean esAlcoholica, double graduacionAlcoholica, boolean esImportado, String fechaVencimiento, int calorias) {
-        super(identificador, descripcion, stock, precioVenta, costo, disponibleVenta);
+    public Bebida(String descripcion, int stock, double precioVenta, double costo, boolean esAlcoholica, double graduacionAlcoholica, boolean esImportado, String fechaVencimiento, int calorias) {
+        super(descripcion, stock, precioVenta, costo);
         this.esAlcoholica = esAlcoholica;
         this.graduacionAlcoholica = graduacionAlcoholica;
         this.esImportado = esImportado;
         this.fechaVencimiento = fechaVencimiento;
         this.calorias = calorias;
     }
+
+
 
     @Override
     public void setFechaVencimiento(String fecha) {
@@ -74,5 +81,28 @@ public class Bebida extends Producto implements Comestible{
 
     public void setEsImportado(boolean esImportado) {
         this.esImportado = esImportado;
+    }
+
+    @Override
+    public String toString() {
+        return "Bebida{" +
+                "esAlcoholica=" + esAlcoholica +
+                ", graduacionAlcoholica=" + graduacionAlcoholica +
+                ", esImportado=" + esImportado +
+                ", fechaVencimiento='" + fechaVencimiento + '\'' +
+                ", calorias=" + calorias +
+                ", identificador='" + identificador + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", stock=" + stock +
+                ", precioVenta=" + precioVenta +
+                ", costo=" + costo +
+                ", disponibleVenta=" + disponibleVenta +
+                '}';
+    }
+
+    @Override
+    protected String generarIdentificador() {
+        contadorId++;
+        return "AC" + String.format("%03d", contadorId);
     }
 }

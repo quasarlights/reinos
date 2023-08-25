@@ -1,24 +1,34 @@
-abstract public class Producto implements Descuento{
+package service;
+
+import service.Descuento;
+
+abstract public class Producto implements Descuento {
     protected String identificador;
     protected String descripcion;
     protected int stock;
     protected double precioVenta;
     protected double costo;
-    protected boolean disponibleVenta;
+    protected boolean disponibleVenta=true;
 
     public Producto() {
     }
 
-    public Producto(String identificador, String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta) {
-        this.identificador = identificador;
+    public Producto(String descripcion, int stock, double precioVenta, double costo) {
+        this.identificador = generarIdentificador();
         this.descripcion = descripcion;
         this.stock = stock;
         this.precioVenta = precioVenta;
         this.costo = costo;
         this.disponibleVenta = disponibleVenta;
     }
+
+    protected abstract String generarIdentificador();
     public void reducirStock(int cantidad){
         this.stock -= cantidad;
+    }
+
+    public void  aumentarStock(int cantidad){
+        this.stock += cantidad;
     }
     public String getIdentificador() {
         return identificador;
