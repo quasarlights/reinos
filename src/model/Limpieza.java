@@ -1,11 +1,12 @@
 package model;
 
 import service.Producto;
+import utils.TipoAplicacion;
 
 public class Limpieza extends Producto {
     private static int contadorId = 0;
-    public enum TipoAplicacion {COCINA, PISOS, ROPA, MULTIUSO}
     private TipoAplicacion tipoAplicacion;
+    private double porcentajeDescuento;
 
     public Limpieza() {
     }
@@ -16,19 +17,23 @@ public class Limpieza extends Producto {
         return "AZ" + String.format("%03d", contadorId);
     }
 
-    public Limpieza( String descripcion, int stock, double precioVenta, double costo, boolean disponibleVenta, TipoAplicacion tipoAplicacion) {
+    public Limpieza( String descripcion, int stock, double precioVenta, double costo,
+                     TipoAplicacion tipoAplicacion, double porcentajeDescuento) {
         super( descripcion, stock, precioVenta, costo);
         this.tipoAplicacion = tipoAplicacion;
+        this.porcentajeDescuento= porcentajeDescuento;
     }
 
     @Override
     public void setPorcentajeDescuento(double descuento) {
-        this.setPorcentajeDescuento(descuento);
+
+        this.porcentajeDescuento= descuento;
     }
 
     @Override
     public double getPorcentajeDescuento() {
-        return this.getPorcentajeDescuento();
+
+        return this.porcentajeDescuento;
     }
 
     @Override
@@ -42,5 +47,19 @@ public class Limpieza extends Producto {
 
     public void setTipoAplicacion(TipoAplicacion tipoAplicacion) {
         this.tipoAplicacion = tipoAplicacion;
+    }
+
+    @Override
+    public String toString() {
+        return "Limpieza{" +
+                "tipoAplicacion=" + tipoAplicacion +
+                ", porcentajeDescuento=" + porcentajeDescuento +
+                ", identificador='" + identificador + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", stock=" + stock +
+                ", precioVenta=" + precioVenta +
+                ", costo=" + costo +
+                ", disponibleVenta=" + disponibleVenta +
+                '}';
     }
 }

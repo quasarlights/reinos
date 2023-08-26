@@ -32,7 +32,7 @@ public class UserFlow {
         return choice;
 
     }
-
+///////////////////////////////////////////////ADD/////////////////////////////////////////////////////////////////////
     public void stageAdd(Tienda tienda) {
         Utils utils = new Utils();
         clear();
@@ -65,7 +65,7 @@ public class UserFlow {
                 stageAddEnvasados(tienda);
                 break;
             case 3:
-                stageAddLimpieza();
+                stageAddLimpieza(tienda);
                 break;
             case 0:
                 return;
@@ -111,13 +111,23 @@ public class UserFlow {
         scanner.nextLine();
     }
 
-    public void stageAddLimpieza() {
-        System.out.println("Agregar Producto de Limpieza");
-    }
-
-    public int stageBuy() {
+    public void stageAddLimpieza(Tienda tienda) {
         Utils utils = new Utils();
+        LimpiezaFlow limpiezaFlow= new LimpiezaFlow();
+        clear();
+        System.out.println(utils.getGatos());
+        System.out.println("Por favor ingresa el nro. de la opcion deseada");
+        System.out.println("=================AGREGAR======================");
+        System.out.println("Agrega Producto de Limpieza");
+        limpiezaFlow.addLimpieza(tienda);
+        stageAdd(tienda);
+        int choice = scanner.nextInt();
         scanner.nextLine();
+    }
+/////////////////////////////////////////////////////BUY////////////////////////////////////////////////////////////////
+    public void stageBuy(Tienda tienda) {
+        Utils utils = new Utils();
+        clear();
         System.out.println(utils.getGatos());
         System.out.println("Por favor ingresa el nro. de la opcion deseada");
         System.out.println("=================COMPRAR======================");
@@ -128,14 +138,53 @@ public class UserFlow {
         System.out.println("9. Salir");
         System.out.print("Introduce tu eleccion: ");
 
-        int choice = scanner.nextInt();
-        scanner.nextLine();
+        int choice = 0;
+        try {
+            choice = Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Por favor, introduce un número válido.");
+            stageBuy(tienda);
+            return;
+        }
 
-        return choice;
+        clear();
+
+        switch (choice) {
+            case 1:
+                stageBuyBebidas(tienda);
+                break;
+            case 2:
+                stageAddEnvasados(tienda);
+                break;
+            case 3:
+                stageAddLimpieza(tienda);
+                break;
+            case 0:
+                return;
+            case 9:
+                System.out.println("Saliendo del programa...");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("_________________!!!!!!!!!!!!!_________________\n" +
+                        "Opcion no reconocida. Por favor, elige de nuevo.");
+                stageAdd(tienda);
+        }
+
     }
 
-    public void stageBuyBebidas() {
-
+    public void stageBuyBebidas(Tienda tienda) {
+        Utils utils = new Utils();
+        BebidaFlow bebidaFlow= new BebidaFlow();
+        clear();
+        System.out.println(utils.getGatos());
+        System.out.println("Por favor ingresa el nro. de la opcion deseada");
+        System.out.println("=================COMPRAR======================");
+        System.out.println("Comprar Bebida");
+        bebidaFlow.buyBebida(tienda);
+        stageBuy(tienda);
+        int choice = scanner.nextInt();
+        scanner.nextLine();
     }
 
     public void stageBuyEnvasados() {

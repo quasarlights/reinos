@@ -26,7 +26,7 @@ public class EnvasadoFlow {
             double costo = handlerException.readDouble("Introduce el costo:");
             //scanner.nextLine();
             TipoEnvase tipoEnvase = handlerException.handleTipoEnvase();
-            System.out.println("La bebida es importada? Introduce si/no:");
+            System.out.println("el envasado es importada? Introduce si/no:");
             String respuestaImportado = scanner.nextLine();
             boolean esImportado = false;
             if ("si".equalsIgnoreCase(respuestaImportado)) {
@@ -34,14 +34,16 @@ public class EnvasadoFlow {
             } else if ("no".equalsIgnoreCase(respuestaImportado)) {
                 esImportado = false;
             } else {
-                System.out.println("Respuesta no valida. Se asumira que la bebida no es importada.");
+                System.out.println("Respuesta no valida. Se asumira que la envasado no es importada.");
                 esImportado = false;
             }
             System.out.println("Introduce fecha de Vencimiento:");
             String fechaVencimiento = scanner.nextLine();
             int calorias = handlerException.readInt("Introduce calorias:");
+            double porcentajeDescuento = handlerException.readDouble("Introduce porcentaje de Descuento:");
 
-            Envasado nuevoEnvasado= new Envasado(descripcion, stock, precioVenta,costo, tipoEnvase, esImportado, fechaVencimiento,calorias);
+            Envasado nuevoEnvasado= new Envasado(descripcion, stock, precioVenta,costo, tipoEnvase, esImportado,
+                    fechaVencimiento,calorias, porcentajeDescuento);
 
             tienda.getProductosEnStock().get("model.Envasado").add(nuevoEnvasado);
 

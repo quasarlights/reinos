@@ -3,6 +3,7 @@ package utils;
 import model.Bebida;
 import model.Tienda;
 import model.exception.HandlerException;
+import operation.Venta;
 import service.Producto;
 
 import java.util.List;
@@ -11,8 +12,9 @@ import java.util.Scanner;
 
 public class BebidaFlow {
     HandlerException handlerException= new HandlerException();
+    Scanner scanner = new Scanner(System.in);
     public void addBebida(Tienda tienda){
-        Scanner scanner = new Scanner(System.in);
+
         do {
             System.out.println("Introduce la descripcion:");
             String descripcion = scanner.nextLine();
@@ -57,9 +59,10 @@ public class BebidaFlow {
             System.out.println("Introduce fecha de Vencimiento:");
             String fechaVencimiento = scanner.nextLine();
             int calorias = handlerException.readInt("Introduce calorias:");
+            double porcentajeDescuento = handlerException.readDouble("Introduce porcentaje de Descuento:");
 
             Bebida nuevaBebida = new Bebida(descripcion, stock, precioVenta, costo,
-                    esAlcoholica, graduacionAlcoholica, esImportado, fechaVencimiento, calorias);
+                    esAlcoholica, graduacionAlcoholica, esImportado, fechaVencimiento, calorias, porcentajeDescuento);
 
             tienda.getProductosEnStock().get("model.Bebida").add(nuevaBebida);
 
@@ -72,5 +75,20 @@ public class BebidaFlow {
                 break;
             }
         } while (true);
+    }
+
+    public void buyBebida(Tienda tienda){
+        do {
+            System.out.println("******************************************");
+            System.out.println("Aprieta Enter para ver la lista de Bebidas");
+            System.out.println("******************************************");
+            scanner.nextLine();
+            List<Producto> bebidas = tienda.getProductosEnStock().get("model.Bebida");
+            for (Producto bebida : bebidas) {
+                System.out.println(bebida);
+            }
+
+        } while (true);
+
     }
 }

@@ -2,7 +2,7 @@ package service;
 
 import service.Descuento;
 
-abstract public class Producto implements Descuento {
+abstract public class Producto implements Descuento  {
     protected String identificador;
     protected String descripcion;
     protected int stock;
@@ -10,8 +10,10 @@ abstract public class Producto implements Descuento {
     protected double costo;
     protected boolean disponibleVenta=true;
 
+
     public Producto() {
     }
+
 
     public Producto(String descripcion, int stock, double precioVenta, double costo) {
         this.identificador = generarIdentificador();
@@ -20,6 +22,7 @@ abstract public class Producto implements Descuento {
         this.precioVenta = precioVenta;
         this.costo = costo;
         this.disponibleVenta = disponibleVenta;
+
     }
 
     protected abstract String generarIdentificador();
@@ -76,5 +79,17 @@ abstract public class Producto implements Descuento {
 
     public void setDisponibleVenta(boolean disponibleVenta) {
         this.disponibleVenta = disponibleVenta;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "identificador='" + identificador + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", stock=" + stock +
+                ", precioVenta=" + precioVenta +
+                ", costo=" + costo +
+                ", disponibleVenta=" + disponibleVenta +
+                '}';
     }
 }

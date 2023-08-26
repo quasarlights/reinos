@@ -23,6 +23,13 @@ public class Tienda {
         productosEnStock.put("model.Bebida", new ArrayList<>());
         productosEnStock.put("model.Limpieza", new ArrayList<>());
     }
+    public Tienda(String nombre, int maxProductos, double saldoCaja, Map<String, List<Producto>> inventarioInicial) {
+        this.nombre = nombre;
+        this.maxProductos = maxProductos;
+        this.saldoCaja = saldoCaja;
+        this.productosEnStock = inventarioInicial;
+    }
+
 
     //CALCULA LA CANTIDAD TOTAL DE STOCK DE TODOS LOS PRODUCTOS
     public int calcularTotalProductos() {

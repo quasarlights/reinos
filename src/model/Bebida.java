@@ -10,16 +10,20 @@ public class Bebida extends Producto implements Comestible {
     private boolean esImportado;
     private String fechaVencimiento;
     private int calorias;
+    private double porcentajeDescuento;
 
     
 
-    public Bebida(String descripcion, int stock, double precioVenta, double costo, boolean esAlcoholica, double graduacionAlcoholica, boolean esImportado, String fechaVencimiento, int calorias) {
+    public Bebida(String descripcion, int stock, double precioVenta, double costo, boolean esAlcoholica,
+                  double graduacionAlcoholica, boolean esImportado, String fechaVencimiento, int calorias,
+                  double porcentajeDescuento) {
         super(descripcion, stock, precioVenta, costo);
         this.esAlcoholica = esAlcoholica;
         this.graduacionAlcoholica = graduacionAlcoholica;
         this.esImportado = esImportado;
         this.fechaVencimiento = fechaVencimiento;
         this.calorias = calorias;
+        this.porcentajeDescuento= porcentajeDescuento;
     }
 
 
@@ -46,12 +50,12 @@ public class Bebida extends Producto implements Comestible {
 
     @Override
     public void setPorcentajeDescuento(double descuento) {
-        this.setPorcentajeDescuento(descuento);
+        this.porcentajeDescuento= descuento;
     }
 
     @Override
     public double getPorcentajeDescuento() {
-        return this.getPorcentajeDescuento();
+        return this.porcentajeDescuento;
     }
 
     @Override
@@ -85,19 +89,16 @@ public class Bebida extends Producto implements Comestible {
 
     @Override
     public String toString() {
-        return "Bebida{" +
-                "esAlcoholica=" + esAlcoholica +
-                ", graduacionAlcoholica=" + graduacionAlcoholica +
-                ", esImportado=" + esImportado +
-                ", fechaVencimiento='" + fechaVencimiento + '\'' +
-                ", calorias=" + calorias +
-                ", identificador='" + identificador + '\'' +
+        return "COD " +
+                identificador + '\'' +
                 ", descripcion='" + descripcion + '\'' +
                 ", stock=" + stock +
+                "Alcoholica=" + esAlcoholica +
                 ", precioVenta=" + precioVenta +
-                ", costo=" + costo +
-                ", disponibleVenta=" + disponibleVenta +
-                '}';
+                ", Graduacion Alcoholica=" + graduacionAlcoholica +
+                ", Importado=" + esImportado +
+                ", fechaVencimiento='" + fechaVencimiento + '\'' +
+                ", calorias=" + calorias ;
     }
 
     @Override

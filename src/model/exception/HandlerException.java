@@ -1,6 +1,7 @@
 package model.exception;
 
 import utils.Consola;
+import utils.TipoAplicacion;
 import utils.TipoEnvase;
 
 import java.util.InputMismatchException;
@@ -40,6 +41,17 @@ public class HandlerException {
             try {
                 System.out.println("Ingrese el tipo de envase (PLASTICO, VIDRIO, LATA): ");
                 return TipoEnvase.valueOf(consola.getScanner().nextLine().toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Tipo de envase invalido. Por favor ingrese nuevamente.");
+            }
+        }
+    }
+
+    public TipoAplicacion handleTipoAplicacion() {
+        while (true) {
+            try {
+                System.out.println("Ingrese el tipo de envase (COCINA, PISOS, ROPA, MULTIUSO): ");
+                return TipoAplicacion.valueOf(consola.getScanner().nextLine().toUpperCase());
             } catch (IllegalArgumentException e) {
                 System.out.println("Tipo de envase invalido. Por favor ingrese nuevamente.");
             }

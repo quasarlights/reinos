@@ -1,13 +1,19 @@
 import model.Tienda;
+import service.Producto;
+import utils.Inventario;
 import utils.UserFlow;
 import utils.Utils;
 
-import java.util.Scanner;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
+        Inventario inventario = new Inventario();
+        Map<String, List<Producto>> productosIniciales = inventario.inicializarProductos();
 
-        Tienda miTienda =  new Tienda("Los 3 Gatos", 3, 00);
+
+        Tienda miTienda =  new Tienda("Los 3 Gatos",60, 100000, productosIniciales);
 
         boolean continueRunning = true;
             UserFlow userFlow=new UserFlow();
@@ -20,7 +26,7 @@ public class Main {
                         userFlow.stageAdd(miTienda);
                         break;
                     case 2:
-                        userFlow.stageBuy();
+                        userFlow.stageBuy(miTienda);
                         break;
                     case 3:
                         userFlow.stageSpecial(miTienda);

@@ -10,6 +10,7 @@ public class Envasado extends Producto implements Comestible {
     private boolean esImportado;
     private String fechaVencimiento;
     private int calorias;
+    private double porcentajeDescuento;
 
     private boolean esIdentificadorValido(String identificador) {
         return identificador.matches("^AB\\d{3}$");
@@ -17,7 +18,7 @@ public class Envasado extends Producto implements Comestible {
 
 
     public Envasado(String descripcion, int stock, double precioVenta, double costo, TipoEnvase tipoEnvase,
-                    boolean esImportado, String fechaVencimiento, int calorias) {
+                    boolean esImportado, String fechaVencimiento, int calorias, double porcentajeDescuento) {
         super(descripcion, stock, precioVenta, costo);
         if (!esIdentificadorValido(identificador)) {
             throw new IllegalArgumentException("Identificador inválido para model.Envasado. Debe seguir el formato ABXXX.");
@@ -27,6 +28,7 @@ public class Envasado extends Producto implements Comestible {
         this.esImportado = esImportado;
         this.fechaVencimiento = fechaVencimiento;
         this.calorias = calorias;
+        this.porcentajeDescuento= porcentajeDescuento;
     }
 
     @Override
@@ -46,12 +48,13 @@ public class Envasado extends Producto implements Comestible {
 
     @Override
     public void setPorcentajeDescuento(double descuento) {
-        this.setPorcentajeDescuento(descuento);
+        this.porcentajeDescuento= descuento;
     }
 
     @Override
     public double getPorcentajeDescuento() {
-        return this.getPorcentajeDescuento();
+
+        return this.porcentajeDescuento;
     }
 
     @Override
