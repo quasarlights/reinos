@@ -49,6 +49,11 @@ public class Bebida extends Producto implements Comestible {
     }
 
     @Override
+    public boolean esImportado() {
+        return false;
+    }
+
+    @Override
     public void setPorcentajeDescuento(double descuento) {
         this.porcentajeDescuento= descuento;
     }
@@ -89,11 +94,12 @@ public class Bebida extends Producto implements Comestible {
 
     @Override
     public String toString() {
-        return "COD " +
-                identificador + '\'' +
-                ", descripcion='" + descripcion + '\'' +
+        return "CODIGO: " +
+                identificador +
+                ", " + descripcion + '\'' +
                 ", stock=" + stock +
-                "Alcoholica=" + esAlcoholica +
+                ", DESCUENTO"+ porcentajeDescuento+"%"+
+                ", Alcoholica=" + esAlcoholica +
                 ", precioVenta=" + precioVenta +
                 ", Graduacion Alcoholica=" + graduacionAlcoholica +
                 ", Importado=" + esImportado +

@@ -4,14 +4,18 @@ import model.Bebida;
 import model.Envasado;
 import model.Tienda;
 import model.exception.HandlerException;
+import operation.Venta;
+import service.Producto;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class EnvasadoFlow {
 
     HandlerException handlerException= new HandlerException();
+    Scanner scanner = new Scanner(System.in);
     public void addEnvasado(Tienda tienda){
-        Scanner scanner = new Scanner(System.in);
+
         do {
             System.out.println("Introduce la descripcion:");
             String descripcion = scanner.nextLine();
@@ -60,5 +64,51 @@ public class EnvasadoFlow {
                 return;
             }
         } while (true);
+    }
+
+    public void buyEnvasado(Tienda tienda, Venta miVenta){
+
+        do {
+            System.out.println("******************************************");
+            System.out.println("Aprieta Enter para ver la lista de Envasados");
+            System.out.println("******************************************");
+            scanner.nextLine();
+
+            List<Producto> envasados = tienda.getProductosEnStock().get("model.Envasado");
+            for (Producto envasado : envasados) {
+                System.out.println(envasado.getIdentificador() + " - " + envasado.getDescripcion() + " - Precio: " + envasado.getPrecioVenta() + " - Stock: " + envasado.getStock());
+            }
+
+            System.out.println("Introduce el identificador del producto que quieres comprar o 'salir' para terminar:");
+            String idProducto = scanner.nextLine();
+
+            if ("salir".equalsIgnoreCase(idProducto)) {
+                break;
+            }
+
+            Producto productoSeleccionado = envasados.stream()
+                    .filter(p -> p.getIdentificador().equals(idProducto))
+                    .findFirst()
+                    .orElse(null);
+
+            if (productoSeleccionado == null) {
+                System.out.println("Identificador no válido. Por favor, selecciona un producto válido.");
+                continue;
+            }
+
+            System.out.println("Introduce la cantidad que quieres comprar:");
+            int cantidad = scanner.nextInt();
+            scanner.nextLine();  // Limpia el buffer
+
+            miVenta.agregarProducto(productoSeleccionado, cantidad);
+            System.out.println("Producto agregado a la venta. Deseas agregar otro producto Envasado? (si/no)");
+            String respuesta = scanner.nextLine().toLowerCase();
+
+            if (!respuesta.equals("si")) {
+                break;
+            }
+        } while (true);
+
+        //venta.imprimirDetalle();
     }
 }

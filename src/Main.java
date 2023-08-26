@@ -1,4 +1,5 @@
 import model.Tienda;
+import operation.Venta;
 import service.Producto;
 import utils.Inventario;
 import utils.UserFlow;
@@ -17,6 +18,7 @@ public class Main {
 
         boolean continueRunning = true;
             UserFlow userFlow=new UserFlow();
+            Venta miVenta= new Venta();
 
             while (continueRunning) {
 

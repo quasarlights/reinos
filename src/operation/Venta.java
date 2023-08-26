@@ -16,13 +16,13 @@ public class Venta {
 
     public void agregarProducto(Producto producto, int cantidad) {
         if (producto == null || cantidad <= 0) {
-            System.out.println("service.Producto inválido o cantidad no válida.");
+            System.out.println("Producto invalido o cantidad no valida.");
             return;
         }
 
         if (producto.getStock() < cantidad) {
             System.out.println("Hay productos con stock disponible menor al solicitado.");
-            cantidad = producto.getStock();
+            return;
         }
 
         if (producto.isDisponibleVenta()) {
@@ -48,10 +48,3 @@ public class Venta {
     }
 }
 
-// Nota: La clase service.Producto necesita tener los siguientes métodos:
-// - getStock(): devuelve la cantidad de stock del producto.
-// - isDisponible(): indica si el producto está disponible para la venta.
-// - getPrecioVenta(): devuelve el precio de venta del producto.
-// - reducirStock(int cantidad): reduce el stock del producto por la cantidad dada.
-// - getIdentificador(): devuelve el identificador del producto.
-// - getDescripcion(): devuelve la descripción del producto.

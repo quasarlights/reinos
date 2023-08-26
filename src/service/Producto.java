@@ -24,8 +24,12 @@ abstract public class Producto implements Descuento  {
         this.disponibleVenta = disponibleVenta;
 
     }
-
     protected abstract String generarIdentificador();
+
+    public double getUtilidad(){
+        double utilidad = this.getPrecioVenta() - this.getCosto();
+        return (utilidad / this.getPrecioVenta()) * 100;
+    }
     public void reducirStock(int cantidad){
         this.stock -= cantidad;
     }

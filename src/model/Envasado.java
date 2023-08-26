@@ -101,18 +101,21 @@ public class Envasado extends Producto implements Comestible {
     }
 
     @Override
+    public boolean esImportado() {
+        return false;
+    }
+
+    @Override
     public String toString() {
-        return "Envasado{" +
-                "tipoEnvase=" + tipoEnvase +
-                ", esImportado=" + esImportado +
-                ", fechaVencimiento='" + fechaVencimiento + '\'' +
-                ", calorias=" + calorias +
-                ", identificador='" + identificador + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", stock=" + stock +
-                ", precioVenta=" + precioVenta +
-                ", costo=" + costo +
-                ", disponibleVenta=" + disponibleVenta +
-                '}';
+        return "CODIGO: " +
+                identificador +
+                ", " + descripcion + '\'' +
+                ", stock " + stock +
+                ", DESCUENTO "+ porcentajeDescuento+"%"+
+                ", tipoEnvase " + tipoEnvase +
+                ", esImportado " + esImportado +
+                ", fechaVencimiento '" + fechaVencimiento + '\'' +
+                ", calorias " + calorias +
+                ", precioVenta " + precioVenta;
     }
 }

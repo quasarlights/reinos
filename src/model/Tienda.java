@@ -55,13 +55,23 @@ public class Tienda {
     public String cupoParaAgregarProductos(){
         return "Espacio disponible: " + (maxProductos - calcularTotalProductos());
     }
+
+
     public boolean agregarProductoAsuLista(String tipo, Producto producto) {
+        double costoTotal = producto.getCosto() * producto.getStock();
+
+        // Verificar si hay suficiente saldo en la caja para cubrir el costo total
+        if(saldoCaja - costoTotal < 0) {
+            System.out.println("No se puede agregar el producto. Saldo insuficiente en la caja.");
+            return false;
+        }
         if (!puedeAgregarProducto(producto)) {
             System.out.println("No se puede agregar el producto. Stock maximo alcanzado.");
             System.out.println("Espacio disponible: " + (maxProductos - calcularTotalProductos()));
             return false;
         }
         productosEnStock.get(tipo).add(producto);
+        saldoCaja -= costoTotal;
         return true;
     }
 

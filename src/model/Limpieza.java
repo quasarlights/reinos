@@ -51,15 +51,12 @@ public class Limpieza extends Producto {
 
     @Override
     public String toString() {
-        return "Limpieza{" +
-                "tipoAplicacion=" + tipoAplicacion +
-                ", porcentajeDescuento=" + porcentajeDescuento +
-                ", identificador='" + identificador + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", stock=" + stock +
-                ", precioVenta=" + precioVenta +
-                ", costo=" + costo +
-                ", disponibleVenta=" + disponibleVenta +
-                '}';
+        return "CODIGO: " +
+                identificador +
+                ", " + descripcion + '\'' +
+                ", stock " + stock +
+                ", DESCUENTO "+ porcentajeDescuento+"%"+
+                ", tipoAplicacion " + tipoAplicacion +
+                ", precioVenta " + precioVenta;
     }
 }

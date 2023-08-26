@@ -1,8 +1,7 @@
 package utils;
 
-import model.Bebida;
-import model.Envasado;
 import model.Tienda;
+import operation.Venta;
 
 import java.util.Scanner;
 import java.util.concurrent.Flow;
@@ -125,8 +124,10 @@ public class UserFlow {
         scanner.nextLine();
     }
 /////////////////////////////////////////////////////BUY////////////////////////////////////////////////////////////////
+Venta miVenta= new Venta();
     public void stageBuy(Tienda tienda) {
         Utils utils = new Utils();
+
         clear();
         System.out.println(utils.getGatos());
         System.out.println("Por favor ingresa el nro. de la opcion deseada");
@@ -134,6 +135,7 @@ public class UserFlow {
         System.out.println("1. Compra de Bebidas");
         System.out.println("2. Compra de Productos Envasados");
         System.out.println("3. Compra de Productos de Limpieza");
+        System.out.println("4. Finalizar Compra");
         System.out.println("0. Volver al menu anterior");
         System.out.println("9. Salir");
         System.out.print("Introduce tu eleccion: ");
@@ -151,13 +153,16 @@ public class UserFlow {
 
         switch (choice) {
             case 1:
-                stageBuyBebidas(tienda);
+                stageBuyBebidas(tienda, miVenta);
                 break;
             case 2:
-                stageAddEnvasados(tienda);
+                stageBuyEnvasados(tienda, miVenta);
                 break;
             case 3:
-                stageAddLimpieza(tienda);
+                stageBuyLimpieza(tienda, miVenta);
+                break;
+            case 4:
+                miVenta.imprimirDetalle();
                 break;
             case 0:
                 return;
@@ -173,7 +178,7 @@ public class UserFlow {
 
     }
 
-    public void stageBuyBebidas(Tienda tienda) {
+    public void stageBuyBebidas(Tienda tienda, Venta ventaActual) {
         Utils utils = new Utils();
         BebidaFlow bebidaFlow= new BebidaFlow();
         clear();
@@ -181,21 +186,42 @@ public class UserFlow {
         System.out.println("Por favor ingresa el nro. de la opcion deseada");
         System.out.println("=================COMPRAR======================");
         System.out.println("Comprar Bebida");
-        bebidaFlow.buyBebida(tienda);
+        bebidaFlow.buyBebida(tienda, miVenta);
         stageBuy(tienda);
         int choice = scanner.nextInt();
         scanner.nextLine();
     }
 
-    public void stageBuyEnvasados() {
-
+    public void stageBuyEnvasados(Tienda tienda, Venta ventaActual) {
+        Utils utils = new Utils();
+        EnvasadoFlow envasadoFlow= new EnvasadoFlow();
+        clear();
+        System.out.println(utils.getGatos());
+        System.out.println("Por favor ingresa el nro. de la opcion deseada");
+        System.out.println("=================COMPRAR======================");
+        System.out.println("Comprar Envasado");
+        envasadoFlow.buyEnvasado(tienda, miVenta);
+        stageBuy(tienda);
+        int choice = scanner.nextInt();
+        scanner.nextLine();
     }
 
-    public void stageBuyLimpieza() {
-
+    public void stageBuyLimpieza(Tienda tienda, Venta ventaActual) {
+        Utils utils = new Utils();
+        LimpiezaFlow limpiezaFlow= new LimpiezaFlow();
+        clear();
+        System.out.println(utils.getGatos());
+        System.out.println("Por favor ingresa el nro. de la opcion deseada");
+        System.out.println("=================COMPRAR======================");
+        System.out.println("Comprar Productos de Limpieza");
+        limpiezaFlow.buyLimpieza(tienda, miVenta);
+        stageBuy(tienda);
+        int choice = scanner.nextInt();
+        scanner.nextLine();
     }
 
     public void stageSpecial(Tienda tienda) {
+        SpecialFlow specialFlow= new SpecialFlow();
         Utils utils = new Utils();
         clear();
         System.out.println(utils.getGatos());
@@ -217,10 +243,10 @@ public class UserFlow {
 
         switch (choice) {
             case 1:
-                System.out.println("In construction");
+                specialFlow.specialOne(tienda);
                 break;
             case 2:
-                System.out.println("In construction");
+                specialFlow.specialTwo(tienda);
                 break;
             case 3:
                 System.out.println("Total: "+tienda.calcularTotalProductos());
@@ -240,7 +266,7 @@ public class UserFlow {
     }
 
     public void clear() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             System.out.println("*");
         }
     }
